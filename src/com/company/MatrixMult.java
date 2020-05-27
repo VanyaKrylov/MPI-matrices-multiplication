@@ -16,7 +16,6 @@ public class MatrixMult {
         final int startRow = getStartRow(rank, chunk);
         final int endRow = getEndRow(rank, chunk, rows);
 
-        //for (int i = 0; i < startRow; i++) {
         if (startRow < rows) {
             for (int i = startRow; i < endRow; i++) {
                 for (int j = 0; j < cols; j++) {
@@ -39,7 +38,6 @@ public class MatrixMult {
                     requests[i - 1] = MPI.COMM_WORLD.Irecv(c.getValues(), offset, count, MPI.DOUBLE, i, 77);
                 }
                 Request.Waitall(requests);
-                System.out.println("Done");
             } else {
                 final int offset = getOffset(startRow, cols);
                 final int count = getCount(startRow, endRow, cols);
